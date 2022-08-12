@@ -6,13 +6,13 @@
 
 版本库的追踪就是`commit`的连续节点，`master`指向最新的`commit`，`HEAD`指向`master`。`master`仅为标识分支的指针，`HEAD`指向谁表示谁是当前分支。当只有`master`时，版本库的追踪如下：
 
-![git-br-initial](.gitbook/assets/git-branch.assets/0-16601950224412.png)
+![git-br-initial](../.gitbook/assets/git-branch.assets/0-16601950224412.png)
 
 ### 创建&切换分支
 
 如果此时创建新分支`dev`，则创建一个指针`dev`指向`master`指向的`commit`。如果切换分支到`dev`，则：
 
-![git-br-create](.gitbook/assets/git-branch.assets/l.png)
+![git-br-create](../.gitbook/assets/git-branch.assets/l.png)
 
 因为仅仅创建指针和改变`HEAD`的指向，所以速度非常快。
 
@@ -20,13 +20,13 @@
 
 切换分支后，我们进行修改并提交。此时，`dev`分支开始生长，而`master`不变，即：
 
-![git-br-dev-fd](.gitbook/assets/git-branch.assets/l-16601952313815.png)
+![git-br-dev-fd](../.gitbook/assets/git-branch.assets/l-16601952313815.png)
 
 ### 合并分支
 
 因为`master`此时并没有发生任何变更，所以将`dev`的内容合并到`master`仅需，移动`master`指针到`dev`的位置即可。
 
-![git-br-ff-merge](.gitbook/assets/git-branch.assets/0-16601953593367.png)
+![git-br-ff-merge](../.gitbook/assets/git-branch.assets/0-16601953593367.png)
 
 随后，我们就可以将`dev`分支删除。
 
@@ -68,7 +68,7 @@ Switched to branch 'master'
 
 此時，多個commit、master、dev和HEAD形成的DAG（有向無環圖）如下：
 
-![git-br-on-master](.gitbook/assets/git-branch.assets/0.png)
+![git-br-on-master](../.gitbook/assets/git-branch.assets/0.png)
 
 5 將`dev`分支的工作成果合并到`master`分支上：
 
@@ -157,7 +157,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 此时，由于`README.md`内容冲突，将无法进行快进，需要先解决冲突。当前的版本库节点图如下：
 
-![git-br-feature1](./.gitbook/assets/git-branch.assets/merge-conflict-1.png)
+![git-br-feature1](../.gitbook/assets/git-branch.assets/merge-conflict-1.png)
 
 ### 解決
 
@@ -224,7 +224,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
    當前各分支的狀態圖：
 
-   ![git-br-conflict-merged](./.gitbook/assets/git-branch.assets/merge-conflict-2.png)
+   ![git-br-conflict-merged](../.gitbook/assets/git-branch.assets/merge-conflict-2.png)
 
 4. 刪除已經完成工作的`feature`分支。
 
@@ -289,20 +289,20 @@ $ git log --graph --pretty=oneline --abbrev-commit
 
 整个节点图如下：
 
-![policy-branch-1](.gitbook/assets/git-branch.assets/policy-branch-1.png)
+![policy-branch-1](../.gitbook/assets/git-branch.assets/policy-branch-1.png)
 
 ### 分支策略
 
 1. `master`应作为稳定的发布分支，尽量避免修改；
 2. `dev`为开发分支，平时的小修小补都在上面（`dev`应该是最新的内容）；
-3.  每次工作的合理步骤：
+3. 每次工作的合理步骤：
    1. 拉取（pull）`dev`的最新内容，以此为基础创建新分支；
    2. 在新分支开发，开发完后提交到新分支；
    3. 切换回`dev`并将内容合并，最后推送到远端的`dev`。
 
 所以，团队合作的分支看起来就像这样：
 
-![policy-branch-2](.gitbook/assets/git-branch.assets/policy-branch-2.png)
+![policy-branch-2](../.gitbook/assets/git-branch.assets/policy-branch-2.png)
 
 ## Bug分支
 

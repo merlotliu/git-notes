@@ -84,7 +84,7 @@ $ git remote rm origin
 
 勾選 `Add a README file`即可。
 
-![image-20220811122659443](C:\Users\Danie\merlotliu.github\merlotliu.notes\git-notes\remote-repository.assets\image-20220811122659443.png)
+![image-20220811122659443](../.gitbook/assets/remote-repository.assets/image-20220811122659443.png)
 
 然後在本地使用`git clone <repo-name>`，克隆到本地即可。
 
@@ -103,7 +103,9 @@ Resolving deltas: 100% (22/22), done.
 
 ## Notes
 
-Git支持多种协议，包括`https`，但`ssh`协议速度最快。默认的`git://`使用`ssh`。
+1. 使用命令`git remote add origin git@server-name:path/repo-name.git`关联一个远程库，`origin`是默认远程库名字;
+2. 关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；
+3. Git支持多种协议，包括`https`，但`ssh`协议速度最快。默认的`git://`使用`ssh`。
 
 ## Reference
 
