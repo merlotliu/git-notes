@@ -1,2 +1,2 @@
-# git-quick-start
+# Quick Start
 
