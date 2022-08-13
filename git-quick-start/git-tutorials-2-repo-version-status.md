@@ -20,19 +20,11 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
         modified:   README.md
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        create-repository.md
-        git-troubleshooting.md
-        manage-repository.md
         
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 可以發現，輸出信息告訴我們，`README.md`文件被修改了但沒有提交。
-
-未被添加的文件状态为`Untracked`。
 
 當前沒有`add`任何文件。
 
@@ -100,48 +92,34 @@ $ git commit -m "append GPL"
 
 ```
 $ git log
-commit 67c3c5ed881638d0d4b43cd6ba05a14fd6651b37 (HEAD -> master)
+commit 489bb6c5db63d286cdde8f27aa2304fc6397f6e7 (HEAD -> master)
 Author: merlotliu <meetlouisliu@163.com>
-Date:   Wed Aug 10 17:46:50 2022 +0800
+Date:   Fri Aug 12 13:05:07 2022 +0800
 
     append GPL
 
-commit 0f9a985c9d2f638e87451e3dba5dd0e43275c530
+commit 2d80ce0888b31e6e3275585add58ddcedef3249a
 Author: merlotliu <meetlouisliu@163.com>
-Date:   Wed Aug 10 17:45:10 2022 +0800
-
-    modified manage-repository
-
-commit c29906cff84fb639682861d871526b50dd48d14f
-Author: merlotliu <meetlouisliu@163.com>
-Date:   Wed Aug 10 17:39:51 2022 +0800
-
-    add 3 files
-
-commit 2ffd4d4a5c2905e1ad55871bc78ef91adea55e35
-Author: merlotliu <meetlouisliu@163.com>
-Date:   Wed Aug 10 17:38:01 2022 +0800
+Date:   Fri Aug 12 13:03:56 2022 +0800
 
     add distributed
 
-commit 8fa9ef54626d0b64e95b6701b25d7d6e75372757
+commit 954d5a7354256b6ef5f05286ae02f7b78ce460be
 Author: merlotliu <meetlouisliu@163.com>
-Date:   Wed Aug 10 17:16:41 2022 +0800
+Date:   Fri Aug 12 12:59:02 2022 +0800
 
     wrote a readme file
 ```
 
-`git log`按照從最進到最遠的時間，顯示了我們提交的5個版本、相關提交説明以及作者等信息。
+`git log`按照從最進到最遠的時間，顯示了我們提交的3個版本、相關提交説明以及作者等信息。
 
 同時，可以添加相關參數以獲得更簡潔的日志信息，比如`--pretty=oneline`：
 
 ```
 $ git log --pretty=oneline
-67c3c5ed881638d0d4b43cd6ba05a14fd6651b37 (HEAD -> master) append GPL
-0f9a985c9d2f638e87451e3dba5dd0e43275c530 modified manage-repository
-c29906cff84fb639682861d871526b50dd48d14f add 3 files
-2ffd4d4a5c2905e1ad55871bc78ef91adea55e35 add distributed
-8fa9ef54626d0b64e95b6701b25d7d6e75372757 wrote a readme file
+489bb6c5db63d286cdde8f27aa2304fc6397f6e7 (HEAD -> master) append GPL
+2d80ce0888b31e6e3275585add58ddcedef3249a add distributed
+954d5a7354256b6ef5f05286ae02f7b78ce460be wrote a readme file
 ```
 
 ### 2 可视化工具查看：Git GUI
@@ -160,24 +138,21 @@ c29906cff84fb639682861d871526b50dd48d14f add 3 files
 $ cat README.md
 Git is a distributed version contorl system.
 Git is free software distributed under the GPL.
-Git Backtrack
 ```
-
-“Git Backtrack”内容是我們在`append GPL`后又添加的新内容。
 
 然後使用`git reset --hard <version>`開始回退：
 
 ```
 $ git reset --hard HEAD^
-HEAD is now at 67c3c5e append GPL
+HEAD is now at 2d80ce0 add distributed
 ```
 
 接著查看當前版本的`README.md`：
 
 ```
 $ cat README.md
-Git is a distributed version contorl system.
-Git is free software distributed under the GPL.
+Git is a distributed version control system.
+Git is free software.
 ```
 
 顯然，我們成功了。
@@ -186,18 +161,15 @@ Git is free software distributed under the GPL.
 
 ```
 $ git log --pretty=oneline
-67c3c5ed881638d0d4b43cd6ba05a14fd6651b37 (HEAD -> master) append GPL
-0f9a985c9d2f638e87451e3dba5dd0e43275c530 modified manage-repository
-c29906cff84fb639682861d871526b50dd48d14f add 3 files
-2ffd4d4a5c2905e1ad55871bc78ef91adea55e35 add distributed
-8fa9ef54626d0b64e95b6701b25d7d6e75372757 wrote a readme file
+2d80ce0888b31e6e3275585add58ddcedef3249a (HEAD -> master) add distributed
+954d5a7354256b6ef5f05286ae02f7b78ce460be wrote a readme file
 ```
 
 此時，如果我們想回到那個版本的狀態需要提供其對應的`commit id`，然後使用`git reset --hard <commit id>`：
 
 ```
-$ git reset --hard c7261
-HEAD is now at c7261c2 add backtrack-repository.md
+$ git reset --hard 489bb6c
+HEAD is now at 489bb6c append GPL
 ```
 
 顯然，`commit id`也並不需要寫全，保證前綴唯一即可。然後發現，我們又回到最新的版本。
@@ -206,15 +178,15 @@ HEAD is now at c7261c2 add backtrack-repository.md
 
 如果忘記了`commit id`，可以使用 `git reflog`命令查看，該命令記錄了每一次的命令。
 
-```
+```shell
 $ git reflog
-67c3c5e (HEAD -> master) HEAD@{0}: reset: moving to HEAD^
-c7261c2 HEAD@{1}: commit: add backtrack-repository.md
-67c3c5e (HEAD -> master) HEAD@{2}: commit: append GPL
-0f9a985 HEAD@{3}: commit: modified manage-repository
-c29906c HEAD@{4}: commit: add 3 files
-2ffd4d4 HEAD@{5}: commit: add distributed
-8fa9ef5 HEAD@{6}: commit (initial): wrote a readme file
+489bb6c (HEAD -> master) HEAD@{0}: reset: moving to 489bb6c
+2d80ce0 HEAD@{1}: reset: moving to HEAD^
+489bb6c (HEAD -> master) HEAD@{2}: reset: moving to 489bb6c
+2d80ce0 HEAD@{3}: reset: moving to HEAD^
+489bb6c (HEAD -> master) HEAD@{4}: commit: append GPL
+2d80ce0 HEAD@{5}: commit: add distributed
+954d5a7 HEAD@{6}: commit (initial): wrote a readme file
 ```
 
 ## 小結

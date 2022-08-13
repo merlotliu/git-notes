@@ -32,6 +32,10 @@ nothing to commit, working tree clean
 
 1. 添加LICENSE新文件；
 
+   ```
+   $ touch LICENSE
+   ```
+
 2. 对README.md修改为以下内容：
 
    ```
@@ -53,14 +57,26 @@ nothing to commit, working tree clean
    Untracked files:
      (use "git add <file>..." to include in what will be committed)
            LICENSE
+   
+   no changes added to commit (use "git add" and/or "git commit -a")
    ```
 
-​		显然，输出告诉我们README.md被修改，LICENSE从未被提交。
+​		显然，输出告诉我们README.md被修改，LICENSE从未被提交（状态为Untracked）。
 
 4. 将两个文件添加到暂存区：
 
    ```
    $ git add README.md LICENSE
+   ```
+
+   ```
+   # 查看當前狀態
+   $ git status
+   On branch master
+   Changes to be committed:
+     (use "git restore --staged <file>..." to unstage)
+           new file:   LICENSE
+           modified:   README.md
    ```
 
    如下為當前版本庫狀態
@@ -70,9 +86,9 @@ nothing to commit, working tree clean
 5. 提交到分支
 
    ```shell
-   $ git commit -m "understand how stage works"
-   [master f1e7833] understand how stage works
-    2 files changed, 1 insertion(+), 1 deletion(-)
+   $git commit -m "understand how stage works"
+   [master 4075e3b] understand how stage works
+    2 files changed, 1 insertion(+)
     create mode 100644 LICENSE
    ```
 

@@ -4,6 +4,12 @@
 >
 > 实际情况往往是这样，找一台电脑充当服务器的角色，每天24小时开机，其他每个人都从这个“服务器”仓库克隆一份到自己的电脑上，并且各自把各自的提交推送到服务器仓库里，也从服务器仓库中拉取别人的提交。
 
+## 配置SSH
+
+```shell
+$ ssh-keygen -t rsa -C "youremail@example.com"
+```
+
 ## 添加远程库
 
 首先在 Github 创建一个 Git 仓库：new ----> 填写 Repository Name ----> Create repository。

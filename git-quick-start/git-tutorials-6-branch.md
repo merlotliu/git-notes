@@ -59,6 +59,14 @@ $ git branch
 
 #### 3 修改`dev`分支内容並提交；
 
+```
+$ echo "Creating a new branch is quick." >> README.md
+$ git add README.md
+$ git commit  -m "branch test"
+[dev 882e9c3] branch test
+ 1 file changed, 1 insertion(+)
+```
+
 #### 4 切換回`master`分支：
 
 ```
@@ -70,11 +78,11 @@ Switched to branch 'master'
 
 ![git-br-on-master](../.gitbook/assets/git-branch.assets/0.png)
 
-5 將`dev`分支的工作成果合并到`master`分支上：
+#### 5 將`dev`分支的工作成果合并到`master`分支上：
 
 ```
 $ git merge dev
-Updating 8061771..ff72b74
+Updating 2296a12..882e9c3
 Fast-forward
  README.md | 1 +
  1 file changed, 1 insertion(+)
@@ -86,7 +94,7 @@ Fast-forward
 
 ```
 $ git branch -d dev
-Deleted branch dev (was ff72b74).
+Deleted branch dev (was 882e9c3).
 ```
 
 删除后，查看`branch`，就只剩下`master`分支了：
@@ -144,9 +152,36 @@ Git鼓励大量使用分支：
 
 目前，当前仓库仅有`master`分支，接着创建`feature`分支。
 
-然后分别对两个分支的`README.md`修改。在`master`分支中，追加`Creating a new branch is quick & simple.`到`README.md`。在`feature`分支中，追加`Creating a new branch is quick AND simple.`到`README.md`。
+然后分别对两个分支的`README.md`修改。在`feature`分支中，追加`Creating a new branch is quick AND simple.`到`README.md`。切换回`master`分支，在`master`分支中，追加`Creating a new branch is quick & simple.`到`README.md`。
 
-切换回`master`分支，准备将`feature`内容合并到`master`。
+```
+$ git switch -c feature
+Switched to a new branch 'feature'
+
+$ echo "Creating a new branch is quick AND simple."  >> README.md
+
+$ git add README.md
+$ git commit -m "AND simple"
+[feature 03b654f] AND simple
+ 1 file changed, 2 insertions(+)
+ 
+ $ git reset --hard HEAD^
+HEAD is now at 882e9c3 branch test
+
+$ git switch master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+$ echo "Creating a new branch is quick & simple." >> README.md
+
+$ git add README.md
+$ git commit -m "& simple"
+[master c72882e] & simple
+ 1 file changed, 1 insertion(+)
+```
+
+准备将`feature`内容合并到`master`。
 
 ```shell
 $ git merge feature
@@ -166,6 +201,9 @@ Automatic merge failed; fix conflicts and then commit the result.
    ```shell
    $ git status
    On branch master
+   Your branch is ahead of 'origin/master' by 2 commits.
+     (use "git push" to publish your local commits)
+   
    You have unmerged paths.
      (fix conflicts and run "git commit")
      (use "git merge --abort" to abort the merge)
@@ -177,16 +215,20 @@ Automatic merge failed; fix conflicts and then commit the result.
    no changes added to commit (use "git add" and/or "git commit -a")
    ```
 
+    (fix conflicts and run "git commit")这就是Git的解决建议。
+
 2. 打開衝突文件，修改爲最終需要的内容，然後提交。
 
    ```
    Git is a distributed version control system.
    Git is free software distributed under the GPL.
    Git has a mutable index called stage.
-   Git tracks changes of files.
+   Git tracks changes.
+   Creating a new branch is quick.
    <<<<<<< HEAD
    Creating a new branch is quick & simple.
    =======
+   
    Creating a new branch is quick AND simple.
    >>>>>>> feature
    ```
@@ -202,24 +244,27 @@ Automatic merge failed; fix conflicts and then commit the result.
    ```
    $ git add README.md
    $ git commit -m "confict fixed in README.md"
-   [master fab1b38] confict fixed in README.md
+   [master 228887d] confict fixed in README.md
    ```
 
 3. 查看分支合并情況（其中的`*`代表的是就是`commit`节点）
 
    ```
    $ git log --graph --pretty=oneline --abbrev-commit
-   *   fab1b38 (HEAD -> master) confict fixed in README.md
+   *   228887d (HEAD -> master) confict fixed in README.md
    |\
-   | * 7af2ae8 AND simple
-   * | fcd3d95 & simple
+   | * 03b654f (feature) AND simple
+   * | c72882e & simple
    |/
-   * 1f7697d git-concepts
-   * 8061771 (origin/master) update remote-repo
-   * b71ac23 remove text
-   * 645d49c add text
-   * 54cdc66 upload new images assets
-   * b4facbd update manage-repo
+   * 882e9c3 (dev) branch test
+   * 2296a12 (origin/master) add test.txt
+   * c11fc99 remove test.txt
+   * 7454a99 add test.txt
+   * 0d136ba git tracks changes
+   * 4075e3b understand how stage works
+   * 489bb6c append GPL
+   * 2d80ce0 add distributed
+   * 954d5a7 wrote a readme file
    ```
 
    當前各分支的狀態圖：
@@ -229,8 +274,8 @@ Automatic merge failed; fix conflicts and then commit the result.
 4. 刪除已經完成工作的`feature`分支。
 
    ```
-   $ git branch -d feature1
-   Deleted branch feature1 (was 7af2ae8).
+   $ git branch -d feature
+   Deleted branch feature (was 03b654f).
    ```
 
 ### 小結
@@ -257,34 +302,36 @@ $ git switch -c dev
 Switched to a new branch 'dev'
 
 $ cat README.md
-Git is a distributed version contorl system.
+Git is a distributed version control system.
 Git is free software distributed under the GPL.
 Git has a mutable index called stage.
+Git tracks changes.
 Creating a new branch is quick and simple.
 
-$ echo "Merge branch without fast forward" >> README.md
+$ echo "Merge branch without fast forward." >> README.md
 
 $ git add README.md
 
-$ git commit -m "add Merge"
-[dev 9b3427f] add Merge
+$ git commit -m "add merge"
+[dev 2bc5f94] add merge
  1 file changed, 1 insertion(+)
 
 $ git switch master
 Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
 
-$ git merge --no-ff -m "merge with no--ff" dev
+$ git merge --no-ff -m "merge without no-ff" dev
 Merge made by the 'ort' strategy.
  README.md | 1 +
  1 file changed, 1 insertion(+)
 
 $ git log --graph --pretty=oneline --abbrev-commit
-*   2d919d4 (HEAD -> master) merge with no--ff
+*   b72bb0f (HEAD -> master) merge without no-ff
 |\
-| * 9b3427f (dev) add Merge
+| * 2bc5f94 (dev) add merge
 |/
-* 8bb02cc update merge-conflict
-
+*   228887d confict fixed in README.md
 ```
 
 整个节点图如下：
@@ -371,12 +418,13 @@ $ echo "fix bug 101" >> README.md
 $ git add README.md
 
 $ git commit -m "fix bug 101"
-[issue-101 a195caa] fix bug 101
+[issue-101 687f515] fix bug 101
  1 file changed, 1 insertion(+)
 
 $ git switch master
 Switched to branch 'master'
-M       git-branch.md
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
 
 $ git merge --no-ff -m "merge bug fix 101" issue-101
 Merge made by the 'ort' strategy.
@@ -388,20 +436,14 @@ Merge made by the 'ort' strategy.
 
 Git提供了一个`cherry-pick`命令，能夠幫助我們让我们能复制一个特定的提交到当前分支。
 
-在`issue-101`分支提交修復的bug時，我們獲得了`commit id`——`[issue-101 a195caa] fix bug 101`：
-
-```shell
-$ git commit -m "fix bug 101"
-[issue-101 a195caa] fix bug 101
- 1 file changed, 1 insertion(+)
-```
+在`issue-101`分支提交修復的bug時，我們獲得了`commit id`——`[issue-101 687f515] fix bug 101`。
 
 现在切換到dev分支，使用`git cherry-pick <commit-id>`即可：
 
 ```
-$ git cherry-pick a195caa
-[dev 3dac81c] fix bug 101
- Date: Fri Aug 12 12:33:57 2022 +0800
+$ git cherry-pick 687f515
+[dev 2549f29] fix bug 101
+ Date: Sat Aug 13 21:53:17 2022 +0800
  1 file changed, 1 insertion(+)
 ```
 
