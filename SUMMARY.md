@@ -2,6 +2,7 @@
 
 * [README](README.md)
 * [Quick Start](git-quick-start/README.md)
+  * [Git 安装](git-quick-start/git-tutorials-0-git-installation.md)
   * [1 创建版本库](git-quick-start/git-tutorials-1-create-repo.md)
   * [2 版本庫管理](git-quick-start/git-tutorials-2-repo-version-status.md)
   * [3 工作区 & 暂存区](git-quick-start/git-tutorials-3-wd-stage.md)
