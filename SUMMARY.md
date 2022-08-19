@@ -14,4 +14,3 @@
   * [9 Git GUI](git-quick-start/git-tutorials-9-git-gui.md)
   * [10 GitHub](git-quick-start/git-tutorials-10-github.md)
 * [Toubleshooting](git-troubleshooting.md)
-* [Git Cheat Sheet](git-cheat-sheet.md)
