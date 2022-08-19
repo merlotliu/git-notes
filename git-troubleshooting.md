@@ -20,6 +20,18 @@ $ git rm --cached <file>
 # 然後重新添加文件
 ```
 
-### Reference
+## CredentialHelperSelector弹窗
+
+### 原因
+
+通常是没有为该仓库保存用户和密码，使得每次提交都需要输入。
+
+![image-20220819185311969](.gitbook/assets/git-troubleshooting.assets/image-20220819185311969.png)
+
+### 解决
+
+使用`git credential-helper-selector`可将该弹窗显示，选择`manager-core`，勾选`Always use this from now on`，点击`Select`即可。
+
+## Reference
 
 1. [错误 warning: LF will be replaced by CRLF in README.md. - ryxiong728 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ryxiong-blog/p/11268952.html)
