@@ -8,6 +8,8 @@ Git官方网站：[git-scm.com](https://git-scm.com/)
 
 包含常用的指令：[Git Cheat Sheet](git-cheat-sheet.md)
 
+官方小抄：[GitHub Git - GitHub Cheatsheets](https://training.github.com/downloads/zh_CN/github-git-cheat-sheet/)
+
 ## Reference
 
 1. [Git (git-scm.com)](https://git-scm.com/)
