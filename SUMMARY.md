@@ -13,6 +13,6 @@
   * [8 Git 配置](git-quick-start/git-tutorials-8-git-config.md)
   * [9 Git GUI](git-quick-start/git-tutorials-9-git-gui.md)
   * [10 GitHub](git-quick-start/git-tutorials-10-github.md)
-* [Git 进阶](git-jin-jie.md)
-* [Git Notes](git-notes.md)
+* [Git Advance](git-advance/README.md)
+* [Git MISC Notes](git-misc/README.md)
 * [Toubleshooting](git-troubleshooting.md)
