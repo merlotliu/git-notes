@@ -14,5 +14,5 @@
   * [9 Git GUI](git-quick-start/git-tutorials-9-git-gui.md)
   * [10 GitHub](git-quick-start/git-tutorials-10-github.md)
 * [Git Advance](git-advance/README.md)
-* [Git MISC Notes](git-misc/README.md)
+* [Git MISC](git-misc/README.md)
 * [Toubleshooting](git-troubleshooting.md)

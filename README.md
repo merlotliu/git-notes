@@ -6,17 +6,17 @@
 
 Git 官网：[https://git-scm.com/](https://git-scm.com/)
 
-Git 官方文档：[https://git-sc链接com/doc](https://git-scm.com/doc)
+Git 官方文档：[https://git-scm.com/doc](https://git-scm.com/doc)
 
-## [Quick Start](git-quick-start/)
+## [Quick Start](git-quick-start/README)
 
 快速开始的一章节中，根据[廖雪峰老师](https://www.liaoxuefeng.com/wiki/896043488029600)的教学入门了Git，根据自己的理解简化了教学，保留了完整的操练过程。
 
-## [Git 进阶](git-jin-jie.md)
+## [Git Advance](git-advance/README)
 
 这一部分将学习Git 高级的一些操作。
 
-## [Git Notes](git-notes.md)
+## [Git MISC](git-misc/README)
 
 这一部分记录了一些 Git 学习过程中较为零碎的知识点、理论以及个人的理解。
 
