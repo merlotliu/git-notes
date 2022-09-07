@@ -32,6 +32,24 @@ $ git rm --cached <file>
 
 使用`git credential-helper-selector`可将该弹窗显示，选择`manager-core`，勾选`Always use this from now on`，点击`Select`即可。
 
+## error: src refspec master does not match any
+
+### 错误描述
+
+```
+$ git push -u origin master
+error: src refspec master does not match any
+error: failed to push some refs to 'github.com:merlotliu/coding.notes.git'
+```
+
+### 原因
+
+本地仓库初始化后未`add&commit`。
+
+### 解決
+
+完成`add&commit`后，重新`push`即可。
+
 ## Reference
 
 1. [错误 warning: LF will be replaced by CRLF in README.md. - ryxiong728 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ryxiong-blog/p/11268952.html)
