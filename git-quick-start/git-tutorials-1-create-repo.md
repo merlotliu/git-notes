@@ -70,6 +70,28 @@ $ git commit -m "wrote a readme file"
 
 我們可以多次通過`add`添加文件到暫存區，并使用一次`commit`將暫存區的文件全部提交到版本庫的當前分支。
 
+## 4 配置用户信息
+
+在第一次提交，添加的信息时，如果没有配置用户信息，则会弹出以下信息：
+
+```
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got '.(none)')
+```
+
+根据提示，我们依次使用：`git config --global user.email "you@example.com"`和`  git config --global user.name "Your Name"`配置好邮箱和名称即可。
+
 ## 幫助
 
 在不熟悉的命令後面跟上`-h`，可查看其用法：
