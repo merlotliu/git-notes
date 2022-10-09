@@ -155,6 +155,10 @@ ssh -T git@<ip-address>
 # 根据输出信息判断是否成功
 ```
 
+##### Notes
+
+如果沒有生效，試著再重启 sshd 服务 `service sshd restart` ，再測試一遍。
+
 
 
 #### 第四步，初始化Git仓库：
