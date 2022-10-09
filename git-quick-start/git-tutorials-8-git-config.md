@@ -101,37 +101,78 @@ $ cat .git/config
 
 ### 安裝Git
 
-第一步，安装`git`：
+#### 第一步，安装`git`：
 
 ```
 $ sudo apt-get install git
 ```
 
-第二步，创建一个`git`用户，用来运行`git`服务：
+#### 第二步，创建一个`git`用户，用来运行`git`服务：
 
 ```
 $ sudo adduser git
 ```
 
-第三步，创建证书登录：
+#### 第三步，创建证书登录：
+
+不然每次都需要输入密码，非常麻烦。
 
 收集所有需要登录的用户的公钥，就是他们自己的`id_rsa.pub`文件，把所有公钥导入到`/home/git/.ssh/authorized_keys`文件里，一行一个。
 
-第四步，初始化Git仓库：
 
-先选定一个目录作为Git仓库，假定是`/srv/sample.git`，在`/srv`目录下输入命令：
+
+客户端进行以下操作：
+
+如果没有的话，使用`ssh-keygen -t rsa -C "<email>"` 生成，可以修改生成的文件名加以区分不同的密钥。
+
+然后，先使用 `ssh-agent bash` ，再使用 `ssh-add ~/.ssh/<id-rsa-name>` 添加私钥。
+
+服务端进行以下操作：
+
+首先查看，`/etc/ssh/sshd_config` 文件，找到：
+
+```shell
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile %h/.ssh/authorized_keys
+```
+
+如果被注释则取消注释，接着重启 sshd 服务 `service sshd restart`。
+
+然后，进入到 `git` 用户的家目录：
+
+- 修改 `.ssh` 权限 ： `chmod 700 /home/git/.ssh`；（文件夹需要可执行权限才能打开）
+- 修改 `authorized_keys` 权限 ： `chmod 600 /home/git/.ssh/authorized_keys`；
+
+然后将刚才在客户端生成添加的私钥所对应的公钥 `<id-rsa-name>.pub`的内容复制到 ` /home/git/.ssh/authorized_keys`文件中，一行一个。
+
+测试密钥是否添加成功：
 
 ```
-$ sudo git init --bare sample.git
+ssh -T git@<ip-address>
+# 如果是 github 后面就是 github.com
+# 本地就填写 ip 地址
+# 根据输出信息判断是否成功
+```
+
+
+
+#### 第四步，初始化Git仓库：
+
+先选定一个目录（随意选取，/home/git/也是不错的选择）作为Git仓库，假定是`/srv/<reposity-name>.git`，在`/srv`目录下输入命令：
+
+```
+$ sudo git init --bare <reposity-name>.git
 ```
 
 Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以`.git`结尾。然后，把owner改为`git`：
 
 ```
-$ sudo chown -R git:git sample.git
+$ sudo chown -R git:git <reposity-name>.git
+# 当然也可以放在 /home/git/目录下
 ```
 
-第五步，禁用shell登录：
+#### 第五步，禁用shell登录：
 
 出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑`/etc/passwd`文件完成。找到类似下面的一行：
 
@@ -147,12 +188,12 @@ git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
 
 这样，`git`用户可以正常通过ssh使用git，但无法登录shell，因为我们为`git`用户指定的`git-shell`每次一登录就自动退出。
 
-第六步，克隆远程仓库：
+#### 第六步，克隆远程仓库：
 
 现在，可以通过`git clone`命令克隆远程仓库了，在各自的电脑上运行：
 
 ```
-$ git clone git@server:/srv/sample.git
+$ git clone git@server:/srv/<reposity-name>.git
 Cloning into 'sample'...
 warning: You appear to have cloned an empty repository.
 ```
