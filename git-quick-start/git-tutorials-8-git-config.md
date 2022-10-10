@@ -206,8 +206,9 @@ warning: You appear to have cloned an empty repository.
 
 ### 管理权限
 
-可使用[Gitosis](https://github.com/res0nat0r/gitosis)（略）
+可使用[Gitosis](https://github.com/res0nat0r/gitosis)（参见 [gitosis简介](./git-tutorials-11-gitosis)）
 
 ## Reference
 
 1. [自定义Git - 廖雪峰的官方网站 (liaoxuefeng.com)](https://www.liaoxuefeng.com/wiki/896043488029600/900785521032192)
+1. [服务器上的 Git — Git中文手册 0.1 文档 (pythontab.com)](https://docs.pythontab.com/github/gitbook/Git-on-the-Server/index.html)
