@@ -210,7 +210,9 @@ warning: You appear to have cloned an empty repository.
 
 ### 管理权限
 
-可使用[Gitosis](https://github.com/res0nat0r/gitosis)（参见 [gitosis简介](./git-tutorials-11-gitosis)）
+- 可使用[Gitosis](https://github.com/res0nat0r/gitosis)（参见 [gitosis简介](./git-tutorials-11-gitosis)）：简单的管理公钥和访问权限；
+
+- 可使用[Gitolite](https://github.com/sitaramc/gitolite)（参见 [Gitolite简介](./git-tutorials-12-gitolite)）：更加细致的访问权限，如分支、标签；
 
 ## Reference
 
