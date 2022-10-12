@@ -2,6 +2,8 @@
 
 個人Git學習筆記
 
+本仓库地址：[merlotliu/git-notes (github.com)](https://github.com/merlotliu/git-notes) 
+
 ## [快速开始](git-quick-start/README)
 
 快速开始的一章节中，根据[廖雪峰老师](https://www.liaoxuefeng.com/wiki/896043488029600)的教学入门了Git，根据自己的理解简化了教学，保留了完整的操练过程。
