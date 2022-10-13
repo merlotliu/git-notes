@@ -164,9 +164,6 @@ $ git add README.md
 $ git commit -m "AND simple"
 [feature 03b654f] AND simple
  1 file changed, 2 insertions(+)
- 
- $ git reset --hard HEAD^
-HEAD is now at 882e9c3 branch test
 
 $ git switch master
 Switched to branch 'master'
