@@ -1,5 +1,49 @@
 # Git Toubleshooting
 
+## push 失败
+
+### 情况1：
+
+```shell
+$ git push origin dev
+To https://github.com/merlotliu/los
+ ! [rejected]        dev -> dev (non-fast-forward)
+error: failed to push some refs to 'https://github.com/merlotliu/los'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+#### 原因
+
+**在本地仓库上的修改没有基于远程库最新版本，你的本地仓库版本落后于远程仓库**。
+
+- 有可能是项目的其他人员提交了代码，而本地没有同步；
+- 有可能是直接在远程仓库修改，而本地未同步；
+- git commit --amend 之后，本地仓库的log版本历史不一致；
+
+#### 解决
+
+如果是前两种，使用
+
+```shell
+git pull 远程仓库 分支 --rebase
+# 然后修改冲突即可
+# 推荐使用
+```
+
+如果冲突难以修改，或不想修改，或第三中情况：
+
+```shell
+git push --force
+# 当然这一使用需开发人员确保代码没有问题，当然有问题也不是什么大事，毕竟还是可以回退版本的
+```
+
+#### 参考
+
+1. [(117条消息) Git常见报错：Updates were rejected because the tip of your current branch is behind_风中一匹狼v的博客-CSDN博客](https://blog.csdn.net/weixin_42310154/article/details/118676936)
+
 ## warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
 
 ### 原因
