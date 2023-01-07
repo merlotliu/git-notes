@@ -16,5 +16,6 @@
   * [11 Gitosis](git-quick-start/git-tutorials-11-gitosis.md)
   * [12 Gitolite](git-quick-start/git-tutorials-12-gitolite.md)
 * [Git Advance](git-advance/README.md)
+  - [1 子模块](git-advance/001-submodule.md)
 * [Git MISC](git-misc/README.md)
 * [Toubleshooting](git-troubleshooting.md)
